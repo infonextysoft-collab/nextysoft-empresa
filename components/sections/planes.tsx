@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-
+  
 // Brand palette
 // #005187 – deep navy
 // #4d82bc – mid blue
@@ -21,59 +21,6 @@ const CheckIcon = () => (
   </svg>
 );
 
-const plans = [
-  {
-    id: "esencial",
-    badge: null,
-    name: "Plan Esencial",
-    tagline: "Perfecto para empezar a vender online",
-    price: "S/ 299",
-    priceNote: "pago único",
-    highlight: false,
-    color: "#4d82bc",
-    accentBg: "#f0f6ff",
-    features: [
-      "Página web de hasta 10 productos",
-      "Botón de WhatsApp en cada producto",
-      "Diseño moderno adaptado a tu marca",
-      "100% optimizada para celular",
-      "Formulario de contacto",
-      "Entrega en 2 a 5 días hábiles",
-      "1 revisión de diseño incluida",
-    ],
-    notIncluded: [
-      "Productos ilimitados",
-      "Blog o sección de novedades",
-      "Soporte prioritario",
-    ],
-    cta: "Empezar con Esencial",
-  },
-  {
-    id: "pro",
-    badge: "Más popular",
-    name: "Plan Pro",
-    tagline: "Para negocios que quieren destacar",
-    price: "S/ 499",
-    priceNote: "pago único",
-    highlight: true,
-    color: "#005187",
-    accentBg: "#005187",
-    features: [
-      "Productos ilimitados",
-      "Botón de WhatsApp en cada producto",
-      "Diseño premium a medida",
-      "100% optimizada para celular",
-      "Formulario de contacto",
-      "Entrega en 2 a 5 días hábiles",
-      "3 revisiones de diseño incluidas",
-      "Blog o sección de novedades",
-      "Integración con redes sociales",
-      "Soporte prioritario por 30 días",
-    ],
-    notIncluded: [],
-    cta: "Empezar con Pro",
-  },
-];
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -337,7 +284,7 @@ export default function PricingSection() {
         ref={ref}
         className={`ps-root${visible ? " ps-visible" : ""}`}
       >
-        <section style={{ padding: "88px 0 100px" }}>
+        <section id="planes" style={{ padding: "88px 0 100px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 32px" }}>
 
             {/* ── Header ── */}
@@ -376,7 +323,7 @@ export default function PricingSection() {
 
                 {/* Price */}
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 8, marginBottom: 6 }}>
-                  <span className="price-big" style={{ color: "#005187" }}>S/ 299</span>
+                  <span className="price-big" style={{ color: "#005187" }}>$ 49</span>
                   <span style={{ fontSize: 13, color: "#84b6f4", fontWeight: 600, marginBottom: 10 }}>pago único</span>
                 </div>
                 <p style={{ fontSize: 12, color: "#c4dafa", fontWeight: 500, margin: "0 0 28px" }}>Sin mensualidades · Sin renovaciones</p>
@@ -386,12 +333,13 @@ export default function PricingSection() {
                 {/* Features */}
                 <div style={{ display: "flex", flexDirection: "column", marginBottom: 28 }}>
                   {[
-                    "Página web de hasta 10 productos",
                     "Botón de WhatsApp en cada producto",
                     "Diseño moderno adaptado a tu marca",
                     "100% optimizada para celular",
-                    "Formulario de contacto",
-                    "Entrega en 2 a 5 días hábiles",
+                    "Hasta 100 productos",
+                    "Secciones básicas: inicio, catálogo, contacto",
+                    "Redes Sociales",
+                    "Hosting y Dominio Gratis",
                     "1 revisión de diseño incluida",
                   ].map((f) => (
                     <div key={f} className="feat-item">
@@ -399,20 +347,7 @@ export default function PricingSection() {
                       <span style={{ color: "#005187", fontWeight: 500 }}>{f}</span>
                     </div>
                   ))}
-                  {[
-                    "Productos ilimitados",
-                    "Blog o sección de novedades",
-                    "Soporte prioritario",
-                  ].map((f) => (
-                    <div key={f} className="feat-item" style={{ opacity: 0.4 }}>
-                      <span className="feat-cross">
-                        <svg width="12" height="12" fill="none" stroke="#005187" strokeWidth={2.5} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </span>
-                      <span style={{ color: "#4d82bc", fontWeight: 400, textDecoration: "line-through" }}>{f}</span>
-                    </div>
-                  ))}
+
                 </div>
 
                 <button className="btn-light">
@@ -444,7 +379,7 @@ export default function PricingSection() {
 
                 {/* Price */}
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 8, marginBottom: 6, position: "relative", zIndex: 1 }}>
-                  <span className="price-big" style={{ color: "#fcffff" }}>S/ 499</span>
+                  <span className="price-big" style={{ color: "#fcffff" }}>$ 99</span>
                   <span style={{ fontSize: 13, color: "rgba(196,218,250,0.65)", fontWeight: 600, marginBottom: 10 }}>pago único</span>
                 </div>
                 <p style={{ fontSize: 12, color: "rgba(196,218,250,0.40)", fontWeight: 500, margin: "0 0 28px", position: "relative", zIndex: 1 }}>Sin mensualidades · Sin renovaciones</p>
@@ -454,16 +389,14 @@ export default function PricingSection() {
                 {/* Features */}
                 <div style={{ display: "flex", flexDirection: "column", marginBottom: 28, position: "relative", zIndex: 1 }}>
                   {[
-                    "Productos ilimitados",
-                    "Botón de WhatsApp en cada producto",
-                    "Diseño premium a medida",
+                    "Hasta 250 0 300 productos",
+                    "Categorías de productos",
+                    "Botón de WhatsApp personalizado",
                     "100% optimizada para celular",
-                    "Formulario de contacto",
-                    "Entrega en 2 a 5 días hábiles",
-                    "3 revisiones de diseño incluidas",
+                    "Diseño más profesional",
+                    "2 o 3 revisiones de diseño incluidas",
                     "Blog o sección de novedades",
                     "Integración con redes sociales",
-                    "Soporte prioritario por 30 días",
                   ].map((f) => (
                     <div key={f} className="feat-item">
                       <span className="feat-check-dark"><CheckIcon /></span>

@@ -53,8 +53,13 @@ function useInView(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -234,31 +239,57 @@ export default function FeaturesSection() {
       `}</style>
 
       <section
+        id="beneficios"
         ref={ref}
         className={`fs-root${visible ? " fs-visible" : ""}`}
         style={{ background: "#fcffff", padding: "80px 0 96px" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
-
           {/* ── Header ── */}
           <div style={{ marginBottom: 52 }}>
-            <p className="section-eyebrow afu1" style={{ marginBottom: 12 }}>¿Por qué elegirnos?</p>
-            <h2 className="afu2" style={{ fontSize: "clamp(30px,4vw,48px)", fontWeight: 900, color: "#005187", lineHeight: 1.15, maxWidth: 520, margin: "0 0 16px" }}>
-              Todo lo que tu negocio<br />necesita para vender online
+            <p className="section-eyebrow afu1" style={{ marginBottom: 12 }}>
+              ¿Por qué elegirnos?
+            </p>
+            <h2
+              className="afu2"
+              style={{
+                fontSize: "clamp(30px,4vw,48px)",
+                fontWeight: 900,
+                color: "#005187",
+                lineHeight: 1.15,
+                maxWidth: 700,
+                margin: "0 0 16px",
+              }}
+            >
+              Todo lo que tu negocio
+              <br />
+              necesita para vender online
             </h2>
-            <p className="afu3" style={{ fontSize: 15, color: "#84b6f4", lineHeight: 1.7, maxWidth: 400, margin: 0, fontWeight: 500 }}>
-              Sin sistemas complicados ni mensualidades. Enfocado en conseguirte más clientes desde el primer día.
+            <p
+              className="afu3"
+              style={{
+                fontSize: 15,
+                color: "#84b6f4",
+                lineHeight: 1.7,
+                maxWidth: 900,
+                margin: 0,
+                fontWeight: 500,
+              }}
+            >
+              Sin sistemas complicados ni mensualidades. Enfocado en conseguirte
+              más clientes desde el primer día.
             </p>
           </div>
 
           {/* ── Grid ── */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 20,
-            alignItems: "start",
-          }}>
-
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 20,
+              alignItems: "start",
+            }}
+          >
             {/* ── LEFT: Main dark card ── */}
             <div className="main-card afu4">
               {/* Icon */}
@@ -268,62 +299,133 @@ export default function FeaturesSection() {
                   <span style={{ display: "none" }} />
                 </div>
 
-                <h3 style={{ color: "#fcffff", fontWeight: 800, fontSize: 24, margin: "0 0 16px", lineHeight: 1.3 }}>
+                <h3
+                  style={{
+                    color: "#fcffff",
+                    fontWeight: 800,
+                    fontSize: 24,
+                    margin: "0 0 16px",
+                    lineHeight: 1.3,
+                  }}
+                >
                   Pedidos directo a tu WhatsApp
                 </h3>
-                <p style={{ color: "rgba(196,218,250,0.80)", fontSize: 15, lineHeight: 1.75, margin: 0, maxWidth: 400, fontWeight: 400 }}>
-                  Cada botón de tu página lleva a tus clientes directo a tu WhatsApp. Sin carritos, sin plataformas de pago, sin complicaciones. Tú cierras la venta como siempre lo has hecho.
+                <p
+                  style={{
+                    color: "rgba(196,218,250,0.80)",
+                    fontSize: 15,
+                    lineHeight: 1.75,
+                    margin: 0,
+                    maxWidth: 400,
+                    fontWeight: 400,
+                  }}
+                >
+                  Cada botón de tu página lleva a tus clientes directo a tu
+                  WhatsApp. Sin carritos, sin plataformas de pago, sin
+                  complicaciones. Tú cierras la venta como siempre lo has hecho.
                 </p>
               </div>
 
               {/* Bottom stat */}
               <div style={{ position: "relative", zIndex: 1, marginTop: 36 }}>
                 {/* dot grid accent */}
-                <div className="dot-grid-sm" style={{ position: "absolute", right: 0, bottom: 0 }}>
-                  {Array.from({ length: 25 }).map((_, i) => <div key={i} />)}
+                <div
+                  className="dot-grid-sm"
+                  style={{ position: "absolute", right: 0, bottom: 0 }}
+                >
+                  {Array.from({ length: 25 }).map((_, i) => (
+                    <div key={i} />
+                  ))}
                 </div>
 
-                <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
+                <div
+                  style={{ display: "flex", alignItems: "flex-end", gap: 2 }}
+                >
                   <span className="stat-num">{count}</span>
                   <span className="stat-sym">%</span>
                   <div style={{ marginBottom: 10, marginLeft: 4 }}>
                     {/* small grid icon */}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,6px)", gap: 2 }}>
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3,6px)",
+                        gap: 2,
+                      }}
+                    >
                       {Array.from({ length: 9 }).map((_, i) => (
-                        <div key={i} style={{ width: 6, height: 6, borderRadius: 2, background: "rgba(196,218,250,0.45)" }} />
+                        <div
+                          key={i}
+                          style={{
+                            width: 6,
+                            height: 6,
+                            borderRadius: 2,
+                            background: "rgba(196,218,250,0.45)",
+                          }}
+                        />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p style={{ color: "rgba(196,218,250,0.65)", fontSize: 13, fontWeight: 500, margin: "4px 0 0" }}>
+                <p
+                  style={{
+                    color: "rgba(196,218,250,0.65)",
+                    fontSize: 13,
+                    fontWeight: 500,
+                    margin: "4px 0 0",
+                  }}
+                >
                   de tus clientes te busca desde el celular
                 </p>
               </div>
             </div>
 
             {/* ── RIGHT: 2×2 feature cards ── */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 16,
+              }}
+            >
               {features.map((f, i) => (
                 <div
                   key={f.title}
                   className={`feat-card afi${Math.min(i + 1, 3)}`}
                   style={{ animationDelay: `${0.25 + i * 0.12}s` }}
                 >
-                  <div className="feat-icon-box" style={{ background: f.iconBg }}>
+                  <div
+                    className="feat-icon-box"
+                    style={{ background: f.iconBg }}
+                  >
                     <span style={{ fontSize: 22 }}>{f.icon}</span>
                   </div>
                   <div>
-                    <h4 style={{ color: "#005187", fontWeight: 800, fontSize: 15, margin: "0 0 8px", lineHeight: 1.3 }}>
+                    <h4
+                      style={{
+                        color: "#005187",
+                        fontWeight: 800,
+                        fontSize: 15,
+                        margin: "0 0 8px",
+                        lineHeight: 1.3,
+                      }}
+                    >
                       {f.title}
                     </h4>
-                    <p style={{ color: "#4d82bc", fontSize: 13, lineHeight: 1.65, margin: 0, fontWeight: 400 }}>
+                    <p
+                      style={{
+                        color: "#4d82bc",
+                        fontSize: 13,
+                        lineHeight: 1.65,
+                        margin: 0,
+                        fontWeight: 400,
+                      }}
+                    >
                       {f.desc}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
-
           </div>
         </div>
       </section>

@@ -299,6 +299,7 @@ export default function ProcessSection() {
       `}</style>
 
       <div
+        id="proceso"
         ref={ref}
         className={`proc-root${visible ? " proc-visible" : ""}`}
         style={{ background: "linear-gradient(180deg, #edf5ff 0%, #fcffff 100%)", padding: "88px 0 100px" }}
