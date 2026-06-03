@@ -29,12 +29,6 @@ const products = [
 
 
 
-// const stats = [
-//   { value: "500+", label: "Negocios activos" },
-//   { value: "98%", label: "Clientes satisfechos" },
-//   { value: "2–5d", label: "Entrega rápida" },
-// ];
-
 
 
 
@@ -360,8 +354,7 @@ export default function HeroSection() {
             <div className="fc-b fcard absolute z-20"
               style={{ right: -20, top: "42%", padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(37,211,102,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <WhatsAppIcon className="w-5 h-5" style={{ color: "#25D366" }} />
-              </div>
+<WhatsAppIcon className="w-5 h-5" />              </div>
               <div>
                 <p style={{ margin: 0, fontWeight: 800, fontSize: 13, color: "#005187", lineHeight: 1 }}>+pedidos</p>
                 <p style={{ margin: "3px 0 0", fontSize: 11, color: "#84b6f4", fontWeight: 500 }}>Vía WhatsApp</p>
