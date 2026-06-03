@@ -36,16 +36,13 @@ export default function ProjectDemos() {
   const [activo, setActivo] = useState<number | null>(null);
 
   return (
-    <section
-      id="proyectos"
-      style={{
-        background: "#ffffff", // ← esto
+    <section id="proyectos" 
+    style={{ 
+          background: "#ffffff", // ← esto
 
-        padding: "60px 24px",
-        maxWidth: "100%",
-        margin: "0 auto",
-      }}
-    >
+      padding: "60px 24px", 
+    maxWidth: 1200, 
+    margin: "0 auto" }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: 48 }}>
         <span
@@ -102,8 +99,7 @@ export default function ProjectDemos() {
             style={{
               borderRadius: 14,
               overflow: "hidden",
-              border:
-                activo === p.id ? "2px solid #1a56db" : "2px solid transparent",
+              border: activo === p.id ? "2px solid #1a56db" : "2px solid transparent",
               boxShadow:
                 activo === p.id
                   ? "0 12px 40px rgba(26,86,219,0.18)"
@@ -141,30 +137,9 @@ export default function ProjectDemos() {
                   borderBottom: "1px solid rgba(0,0,0,0.08)",
                 }}
               >
-                <div
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: "#ff5f57",
-                  }}
-                />
-                <div
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: "#ffbd2e",
-                  }}
-                />
-                <div
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: "#28c840",
-                  }}
-                />
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff5f57" }} />
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#ffbd2e" }} />
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#28c840" }} />
                 <div
                   style={{
                     flex: 1,
@@ -177,9 +152,7 @@ export default function ProjectDemos() {
                     paddingLeft: 8,
                   }}
                 >
-                  <span style={{ fontSize: 8, color: "#9ca3af" }}>
-                    {p.link}
-                  </span>
+                  <span style={{ fontSize: 8, color: "#9ca3af" }}>{p.link}</span>
                 </div>
               </div>
 
@@ -292,6 +265,23 @@ export default function ProjectDemos() {
     </section>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // "use client";
 // import { useState } from "react";
