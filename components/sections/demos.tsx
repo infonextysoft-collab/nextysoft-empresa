@@ -36,7 +36,13 @@ export default function ProjectDemos() {
   const [activo, setActivo] = useState<number | null>(null);
 
   return (
-    <section id="proyectos" style={{ padding: "60px 24px", maxWidth: 1200, margin: "0 auto" }}>
+    <section id="proyectos" 
+    style={{ 
+          background: "#ffffff", // ← esto
+
+      padding: "60px 24px", 
+    maxWidth: 1200, 
+    margin: "0 auto" }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: 48 }}>
         <span
