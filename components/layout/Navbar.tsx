@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { NAV_LINKS } from "@/constants/links.ts";
+import { NAV_LINKS } from "@/constants/links";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

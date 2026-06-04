@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const WA_NUMBER = "5199999999"; 
 const WA_MESSAGE_HERO = "Hola, quiero mi página web 🌐";
@@ -29,9 +29,6 @@ const products = [
 ];
 
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-
   return (
     <>
       <style>{`
@@ -379,7 +376,7 @@ export default function HeroSection() {
           <div className="flex-1" style={{ maxWidth: 560, width: "100%" }}>
 
             {/* Badge */}
-            <div className={`${mounted ? "afu1" : ""} hero-badge`} style={{ marginBottom: 24 }}>
+            <div className="afu1 hero-badge" style={{ marginBottom: 24 }}>
               <span className="pulse-dot w-2 h-2 rounded-full block" style={{ background: "#25D366" }} />
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#005187" }}>
                 Para Emprendedores y Negocios
@@ -387,7 +384,7 @@ export default function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 className={`${mounted ? "afu2" : ""}`}
+            <h1 className="afu2"
               style={{ fontSize: "clamp(32px,5vw,58px)", fontWeight: 900, lineHeight: 1.1, color: "#005187", marginBottom: 20 }}>
               Tu negocio online,{" "}
               <span style={{ display: "block", marginTop: 4 }}>
@@ -397,13 +394,13 @@ export default function HeroSection() {
             </h1>
 
             {/* Subtext */}
-            <p className={`${mounted ? "afu3" : ""}`}
+            <p className="afu3"
               style={{ color: "#4d82bc", fontSize: "clamp(15px,2vw,17px)", lineHeight: 1.7, marginBottom: 32, maxWidth: 440 }}>
               Creamos páginas web simples y modernas donde puedes mostrar tus productos y recibir pedidos directamente por WhatsApp. Sin complicaciones, listo en días.
             </p>
 
             {/* CTAs */}
-            <div className={`${mounted ? "afu4" : ""} cta-row`}>
+            <div className="afu4 cta-row">
               <a
                 href={waLink(WA_MESSAGE_HERO)}
                 target="_blank"
@@ -422,7 +419,7 @@ export default function HeroSection() {
             </div>
 
             {/* Trust pills */}
-            <div className={`${mounted ? "afu5" : ""} trust-row`}>
+            <div className="afu5 trust-row">
               {["Entrega en 2–5 días", "100% adaptable al celular", "Sin mensualidades"].map((item) => (
                 <div key={item} className="trust-pill">
                   <span className="trust-check"><CheckIcon /></span>
@@ -434,7 +431,7 @@ export default function HeroSection() {
           </div>
 
           {/* ── RIGHT: Phone mockup (oculto en móvil) ── */}
-          <div className={`${mounted ? "afi" : ""} phone-wrapper`}>
+          <div className="afi phone-wrapper">
 
             {/* Glow */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

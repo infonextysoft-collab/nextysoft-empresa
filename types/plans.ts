@@ -1,4 +1,4 @@
-const plans = [
+export const plans = [
   {
     id: "esencial",
     badge: null,

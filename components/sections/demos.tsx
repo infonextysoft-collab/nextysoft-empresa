@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 const WA_NUMBER = "51999999999";
 const WA_MESSAGE = "Hola, quiero mi demo gratis 🚀";
@@ -248,9 +249,11 @@ export default function ProjectDemos() {
                   </div>
 
                   {/* Screenshot */}
-                  <img
+                  <Image
                     src={p.imagen}
                     alt={p.nombre}
+                    fill
+                    sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 280px"
                     style={{
                       position: "absolute",
                       inset: 0,
