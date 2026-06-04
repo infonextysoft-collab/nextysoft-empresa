@@ -11,7 +11,6 @@ const WhatsAppIcon = () => (
 export default function Footer() {
   return (
     <>
-
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
         .footer-root * { box-sizing: border-box; }
@@ -43,6 +42,69 @@ export default function Footer() {
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(37,211,102,0.50);
         }
+
+        /* ── FOOTER LAYOUT ── */
+        .footer-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+        }
+
+        .footer-tagline {
+          font-size: 14px;
+          color: rgba(196,218,250,0.45);
+          font-weight: 500;
+          margin: 0;
+          text-align: center;
+          flex: 1;
+        }
+
+        .footer-right {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          flex-shrink: 0;
+        }
+
+        .footer-copy {
+          font-size: 13px;
+          color: rgba(196,218,250,0.35);
+          font-weight: 400;
+          margin: 0;
+          white-space: nowrap;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 680px) {
+          .footer-root footer {
+            padding: 28px 20px !important;
+          }
+
+          .footer-inner {
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+          }
+
+          .footer-tagline {
+            font-size: 13px;
+          }
+
+          .footer-right {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+          }
+
+          .footer-copy {
+            white-space: normal;
+            text-align: center;
+          }
+        }
       `}</style>
 
       <footer
@@ -53,19 +115,9 @@ export default function Footer() {
           padding: "22px 40px",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 24,
-          }}
-        >
+        <div className="footer-inner">
 
           {/* Logo */}
-
           <div style={{ flexShrink: 0 }}>
             <span style={{ fontSize: 18, fontWeight: 900, color: "#fcffff", letterSpacing: "-0.3px" }}>
               Nexty
@@ -76,34 +128,17 @@ export default function Footer() {
           </div>
 
           {/* Center tagline */}
-
-          <p style={{
-            fontSize: 14,
-            color: "rgba(196,218,250,0.45)",
-            fontWeight: 500,
-            margin: 0,
-            textAlign: "center",
-            flex: 1,
-          }}>
+          <p className="footer-tagline">
             Soluciones digitales para tu negocio
           </p>
 
-          {/* Right: copyright + WA button */}
-
-
-          <div style={{ display: "flex", alignItems: "center", gap: 24, flexShrink: 0 }}>
-            <p style={{
-              fontSize: 13,
-              color: "rgba(196,218,250,0.35)",
-              fontWeight: 400,
-              margin: 0,
-              whiteSpace: "nowrap",
-            }}>
+          {/* Right: copyright */}
+          <div className="footer-right">
+            <p className="footer-copy">
               © 2025 Nexty Soft. Todos los derechos reservados.
             </p>
-
-           
           </div>
+
         </div>
       </footer>
     </>
