@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 
-// Brand palette
-// #005187 – deep navy (primary dark)
-// #4d82bc – mid blue (primary)
-// #84b6f4 – sky blue (accent/light)
-// #c4dafa – pale blue (surface/bg accent)
-// #fcffff – near white (background base)
+const WA_NUMBER = "5199999999"; 
+const WA_MESSAGE_HERO = "Hola, quiero mi página web 🌐";
+const WA_MESSAGE_FAB  = "Hola, quisiera más información 👋";
+const WA_MESSAGE_SHOP = "Hola, quiero hacer un pedido 🛍️";
+
+const waLink = (msg: string) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -27,13 +28,6 @@ const products = [
   { emoji: "👜", bg: "#e8f2fd", accent: "#c4dafa", name: "Cartera de cuero", price: "S/ 65.00", desc: "Marrón y negro • Varios colores" },
 ];
 
-
-
-
-
-
-
-
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -44,11 +38,11 @@ export default function HeroSection() {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
         :root {
-          --c-navy:   #005187;
-          --c-mid:    #4d82bc;
-          --c-sky:    #84b6f4;
-          --c-pale:   #c4dafa;
-          --c-white:  #fcffff;
+          --c-navy:  #005187;
+          --c-mid:   #4d82bc;
+          --c-sky:   #84b6f4;
+          --c-pale:  #c4dafa;
+          --c-white: #fcffff;
         }
 
         .hero-root * { box-sizing: border-box; }
@@ -127,6 +121,11 @@ export default function HeroSection() {
           font-size: 14px;
           transition: all 0.25s ease;
           box-shadow: 0 8px 24px rgba(0,81,135,0.32);
+          text-decoration: none;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          flex: 1;
+          justify-content: center;
+          min-width: 0;
         }
         .btn-primary:hover {
           transform: translateY(-2px);
@@ -147,6 +146,11 @@ export default function HeroSection() {
           border-radius: 16px;
           font-size: 14px;
           transition: all 0.25s ease;
+          text-decoration: none;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          flex: 1;
+          justify-content: center;
+          min-width: 0;
         }
         .btn-secondary:hover {
           border-color: var(--c-mid);
@@ -172,6 +176,7 @@ export default function HeroSection() {
           font-size: 14px;
           font-family: 'Plus Jakarta Sans', sans-serif;
           transition: box-shadow 0.2s;
+          text-decoration: none;
         }
         .wa-fab:hover { box-shadow: 0 12px 32px rgba(37,211,102,0.55); }
 
@@ -211,7 +216,7 @@ export default function HeroSection() {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 600;
           color: var(--c-navy);
         }
@@ -224,18 +229,115 @@ export default function HeroSection() {
           flex-shrink: 0;
         }
 
-        /* Stat dividers */
-        .stat-divider {
-          width: 1px; height: 36px;
-          background: var(--c-pale);
-          margin: 0 4px;
-        }
-
         /* Product row hover */
         .prow { transition: background 0.18s; border-radius: 10px; }
         .prow:hover { background: rgba(196,218,250,0.18); }
 
         .pulse-dot { animation: pulseDot 2.2s ease-in-out infinite; }
+
+        /* ── RESPONSIVE ─────────────────────────────────── */
+
+        /* Layout principal */
+        .hero-inner {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 64px;
+          padding: 96px 64px;
+        }
+
+        /* CTA row */
+        .cta-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 32px;
+        }
+
+        /* Trust row */
+        .trust-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px;
+          margin-bottom: 36px;
+        }
+
+        /* Phone wrapper */
+        .phone-wrapper {
+          flex: 1;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 640px;
+        }
+
+        /* Floating cards — desktop defaults */
+        .fc-left  { left: -28px; top: 18%; }
+        .fc-right { right: -20px; top: 42%; }
+        .fc-bot   { left: 8%; bottom: 9%; }
+
+        /* FAB label */
+        .wa-fab-label { display: inline; }
+
+        @media (max-width: 1024px) {
+          .hero-inner {
+            flex-direction: column;
+            padding: 80px 32px 48px;
+            gap: 48px;
+          }
+          .phone-wrapper {
+            min-height: 520px;
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-inner {
+            padding: 72px 20px 80px;
+            gap: 40px;
+          }
+
+          /* Ocultamos el mockup del teléfono en móvil para evitar overflow */
+          .phone-wrapper { display: none; }
+
+          /* Buttons full width en móvil */
+          .btn-primary,
+          .btn-secondary {
+            width: 100%;
+            justify-content: center;
+            padding: 15px 20px;
+            font-size: 15px;
+          }
+
+          /* Trust pills — 2 columnas en móvil */
+          .trust-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+
+          /* FAB más pequeño: solo icono */
+          .wa-fab {
+            padding: 14px;
+            border-radius: 50%;
+            gap: 0;
+          }
+          .wa-fab-label { display: none; }
+
+          /* Dot grid oculto en móvil (espacio) */
+          .dot-grid { display: none; }
+        }
+
+        @media (max-width: 480px) {
+          .hero-inner { padding: 64px 16px 80px; }
+
+          /* Trust pills — 1 columna en pantallas muy pequeñas */
+          .trust-row {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
 
       <section
@@ -253,7 +355,7 @@ export default function HeroSection() {
         </div>
 
         {/* Dot grid bottom-left */}
-        <div className="absolute bottom-10 left-10 opacity-25 pointer-events-none"
+        <div className="dot-grid absolute bottom-10 left-10 opacity-25 pointer-events-none"
           style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 8 }}>
           {Array.from({ length: 49 }).map((_, i) => (
             <div key={i} className="pulse-dot w-1.5 h-1.5 rounded-full"
@@ -271,13 +373,13 @@ export default function HeroSection() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-16 py-24">
+        <div className="hero-inner relative z-10 w-full max-w-7xl mx-auto">
 
           {/* ── LEFT ── */}
-          <div className="flex-1" style={{ maxWidth: 560 }}>
+          <div className="flex-1" style={{ maxWidth: 560, width: "100%" }}>
 
             {/* Badge */}
-            <div className={`${mounted ? "afu1" : ""} hero-badge mb-8`}>
+            <div className={`${mounted ? "afu1" : ""} hero-badge`} style={{ marginBottom: 24 }}>
               <span className="pulse-dot w-2 h-2 rounded-full block" style={{ background: "#25D366" }} />
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#005187" }}>
                 Para Emprendedores y Negocios
@@ -286,7 +388,7 @@ export default function HeroSection() {
 
             {/* Headline */}
             <h1 className={`${mounted ? "afu2" : ""}`}
-              style={{ fontSize: "clamp(38px,5vw,58px)", fontWeight: 900, lineHeight: 1.1, color: "#005187", marginBottom: 20 }}>
+              style={{ fontSize: "clamp(32px,5vw,58px)", fontWeight: 900, lineHeight: 1.1, color: "#005187", marginBottom: 20 }}>
               Tu negocio online,{" "}
               <span style={{ display: "block", marginTop: 4 }}>
                 conectado a{" "}
@@ -296,26 +398,31 @@ export default function HeroSection() {
 
             {/* Subtext */}
             <p className={`${mounted ? "afu3" : ""}`}
-              style={{ color: "#4d82bc", fontSize: 17, lineHeight: 1.7, marginBottom: 36, maxWidth: 440 }}>
+              style={{ color: "#4d82bc", fontSize: "clamp(15px,2vw,17px)", lineHeight: 1.7, marginBottom: 32, maxWidth: 440 }}>
               Creamos páginas web simples y modernas donde puedes mostrar tus productos y recibir pedidos directamente por WhatsApp. Sin complicaciones, listo en días.
             </p>
 
             {/* CTAs */}
-            <div className={`${mounted ? "afu4" : ""}`} style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 32 }}>
-              <button className="btn-primary">
+            <div className={`${mounted ? "afu4" : ""} cta-row`}>
+              <a
+                href={waLink(WA_MESSAGE_HERO)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
                 <WhatsAppIcon className="w-5 h-5" />
                 Quiero mi página web
-              </button>
-              <button className="btn-secondary">
+              </a>
+              <a href="#planes" className="btn-secondary">
                 Ver planes
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </a>
             </div>
 
             {/* Trust pills */}
-            <div className={`${mounted ? "afu5" : ""}`} style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 36 }}>
+            <div className={`${mounted ? "afu5" : ""} trust-row`}>
               {["Entrega en 2–5 días", "100% adaptable al celular", "Sin mensualidades"].map((item) => (
                 <div key={item} className="trust-pill">
                   <span className="trust-check"><CheckIcon /></span>
@@ -324,12 +431,10 @@ export default function HeroSection() {
               ))}
             </div>
 
-      
-
           </div>
 
-          {/* ── RIGHT: Phone mockup ── */}
-          <div className={`${mounted ? "afi" : ""} flex-1 relative flex justify-center items-center`} style={{ minHeight: 640 }}>
+          {/* ── RIGHT: Phone mockup (oculto en móvil) ── */}
+          <div className={`${mounted ? "afi" : ""} phone-wrapper`}>
 
             {/* Glow */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -341,8 +446,8 @@ export default function HeroSection() {
             </div>
 
             {/* Float card: ⚡ Entrega rápida */}
-            <div className="fc-a fcard absolute z-20"
-              style={{ left: -28, top: "18%", padding: "14px 18px", display: "flex", alignItems: "center", gap: 12 }}>
+            <div className="fc-a fcard absolute z-20 fc-left"
+              style={{ padding: "14px 18px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(196,218,250,0.5)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>⚡</div>
               <div>
                 <p style={{ margin: 0, fontWeight: 900, fontSize: 17, color: "#005187", lineHeight: 1 }}>2–5 días</p>
@@ -351,10 +456,11 @@ export default function HeroSection() {
             </div>
 
             {/* Float card: WhatsApp pedidos */}
-            <div className="fc-b fcard absolute z-20"
-              style={{ right: -20, top: "42%", padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+            <div className="fc-b fcard absolute z-20 fc-right"
+              style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(37,211,102,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-<WhatsAppIcon className="w-5 h-5" />              </div>
+                <WhatsAppIcon className="w-5 h-5" />
+              </div>
               <div>
                 <p style={{ margin: 0, fontWeight: 800, fontSize: 13, color: "#005187", lineHeight: 1 }}>+pedidos</p>
                 <p style={{ margin: "3px 0 0", fontSize: 11, color: "#84b6f4", fontWeight: 500 }}>Vía WhatsApp</p>
@@ -362,8 +468,8 @@ export default function HeroSection() {
             </div>
 
             {/* Float card: Nuevo pedido */}
-            <div className="fc-c fcard absolute z-20"
-              style={{ left: "8%", bottom: "9%", padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+            <div className="fc-c fcard absolute z-20 fc-bot"
+              style={{ padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(196,218,250,0.5)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🛍️</div>
               <div>
                 <p style={{ margin: 0, fontWeight: 700, fontSize: 12, color: "#005187" }}>¡Nuevo pedido!</p>
@@ -405,7 +511,6 @@ export default function HeroSection() {
                       <p style={{ color: "rgba(196,218,250,0.75)", fontSize: 10, margin: 0, fontWeight: 500 }}>Powered by Nexty Soft</p>
                     </div>
                   </div>
-                  {/* Search */}
                   <div style={{ marginTop: 12, background: "rgba(196,218,250,0.18)", borderRadius: 10, padding: "8px 12px", display: "flex", alignItems: "center", gap: 6 }}>
                     <svg width="12" height="12" fill="none" stroke="rgba(196,218,250,0.7)" strokeWidth="2" viewBox="0 0 24 24">
                       <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
@@ -446,19 +551,25 @@ export default function HeroSection() {
                     ))}
                   </div>
 
-                  {/* WhatsApp CTA */}
-                  <button style={{
-                    width: "100%", marginTop: 12,
-                    background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
-                    color: "#fcffff", fontSize: 11, fontWeight: 800,
-                    padding: "11px 0", borderRadius: 14, border: "none",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 6, cursor: "pointer",
-                    boxShadow: "0 4px 14px rgba(37,211,102,0.35)",
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  }}>
+                  {/* WhatsApp CTA dentro del teléfono */}
+                  <a
+                    href={waLink(WA_MESSAGE_SHOP)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex", width: "100%", marginTop: 12,
+                      background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                      color: "#fcffff", fontSize: 11, fontWeight: 800,
+                      padding: "11px 0", borderRadius: 14, border: "none",
+                      alignItems: "center", justifyContent: "center", gap: 6, cursor: "pointer",
+                      boxShadow: "0 4px 14px rgba(37,211,102,0.35)",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      textDecoration: "none",
+                    }}
+                  >
                     <WhatsAppIcon className="w-3.5 h-3.5" />
                     Pedir por WhatsApp
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -468,10 +579,15 @@ export default function HeroSection() {
 
         {/* WhatsApp FAB */}
         <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 50 }}>
-          <button className="wa-fab">
+          <a
+            href={waLink(WA_MESSAGE_FAB)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wa-fab"
+          >
             <WhatsAppIcon className="w-5 h-5" />
-            Escríbenos
-          </button>
+            <span className="wa-fab-label">Escríbenos</span>
+          </a>
         </div>
       </section>
     </>
