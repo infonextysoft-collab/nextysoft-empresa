@@ -19,28 +19,24 @@ const features = [
   {
     icon: "⚡",
     iconBg: "#fff3e0",
-    iconColor: "#f57c00",
     title: "Lista en 2 a 5 días",
     desc: "Envíanos tus fotos y datos, es todo lo que necesitas hacer. Nosotros nos encargamos del resto.",
   },
   {
     icon: "✦",
     iconBg: "#fff8e1",
-    iconColor: "#f9a825",
     title: "Diseño moderno y profesional",
     desc: "Tu página se ve tan bien como la de cualquier marca grande, pero hecha a medida para tu negocio.",
   },
   {
     icon: "📱",
     iconBg: "#e8f5e9",
-    iconColor: "#2e7d32",
     title: "Optimizada para celular",
     desc: "El 90% de tus clientes te busca desde el celular. Tu página se verá perfecta en cualquier pantalla.",
   },
   {
     icon: "🔒",
     iconBg: "#ede7f6",
-    iconColor: "#512da8",
     title: "Sin mensualidades",
     desc: "Pagas una vez y tu página es tuya. Sin suscripciones ocultas ni costos recurrentes sorpresa.",
   },
@@ -54,10 +50,7 @@ function useInView(threshold = 0.15) {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
+        if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
       },
       { threshold },
     );
@@ -105,24 +98,19 @@ export default function FeaturesSection() {
           0%,100% { opacity: 0.5; transform: scale(1); }
           50%      { opacity: 0.75; transform: scale(1.06); }
         }
-        @keyframes countUp {
-          from { opacity: 0; transform: translateY(10px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
 
         .fs-visible .afu1 { animation: fadeUp 0.6s ease forwards; animation-delay: 0.05s; }
         .fs-visible .afu2 { animation: fadeUp 0.6s ease forwards; animation-delay: 0.15s; }
         .fs-visible .afu3 { animation: fadeUp 0.6s ease forwards; animation-delay: 0.25s; }
         .fs-visible .afu4 { animation: fadeUp 0.6s ease forwards; animation-delay: 0.30s; }
-        .fs-visible .afu5 { animation: fadeUp 0.6s ease forwards; animation-delay: 0.42s; }
         .fs-visible .afi1 { animation: fadeIn 0.7s ease forwards; animation-delay: 0.10s; }
         .fs-visible .afi2 { animation: fadeIn 0.7s ease forwards; animation-delay: 0.35s; }
         .fs-visible .afi3 { animation: fadeIn 0.7s ease forwards; animation-delay: 0.50s; }
 
-        .afu1,.afu2,.afu3,.afu4,.afu5 { opacity: 0; }
+        .afu1,.afu2,.afu3,.afu4 { opacity: 0; }
         .afi1,.afi2,.afi3 { opacity: 0; }
 
-        /* Main card (dark) */
+        /* ── Main dark card ── */
         .main-card {
           background: linear-gradient(145deg, #005187 0%, #003d6e 60%, #002952 100%);
           border-radius: 24px;
@@ -137,10 +125,8 @@ export default function FeaturesSection() {
         .main-card::before {
           content: '';
           position: absolute;
-          right: -60px;
-          top: -60px;
-          width: 280px;
-          height: 280px;
+          right: -60px; top: -60px;
+          width: 280px; height: 280px;
           border-radius: 50%;
           background: radial-gradient(circle, rgba(132,182,244,0.18) 0%, transparent 70%);
           animation: shimmerOrb 6s ease-in-out infinite;
@@ -148,10 +134,8 @@ export default function FeaturesSection() {
         .main-card::after {
           content: '';
           position: absolute;
-          left: -40px;
-          bottom: -40px;
-          width: 200px;
-          height: 200px;
+          left: -40px; bottom: -40px;
+          width: 200px; height: 200px;
           border-radius: 50%;
           background: radial-gradient(circle, rgba(77,130,188,0.20) 0%, transparent 70%);
           animation: shimmerOrb 8s ease-in-out infinite reverse;
@@ -159,8 +143,7 @@ export default function FeaturesSection() {
 
         /* Icon box on dark card */
         .main-icon-box {
-          width: 52px;
-          height: 52px;
+          width: 52px; height: 52px;
           border-radius: 14px;
           background: rgba(196,218,250,0.15);
           border: 1px solid rgba(132,182,244,0.25);
@@ -171,12 +154,12 @@ export default function FeaturesSection() {
           margin-bottom: 28px;
         }
 
-        /* Feature mini-cards (right column) */
+        /* ── Feature mini-cards ── */
         .feat-card {
           background: #f6faff;
           border: 1px solid rgba(196,218,250,0.7);
           border-radius: 20px;
-          padding: 28px 28px 28px 28px;
+          padding: 28px;
           display: flex;
           flex-direction: column;
           gap: 12px;
@@ -189,10 +172,8 @@ export default function FeaturesSection() {
           box-shadow: 0 8px 28px rgba(0,81,135,0.10);
           transform: translateY(-3px);
         }
-
         .feat-icon-box {
-          width: 44px;
-          height: 44px;
+          width: 44px; height: 44px;
           border-radius: 12px;
           display: flex;
           align-items: center;
@@ -201,7 +182,7 @@ export default function FeaturesSection() {
           flex-shrink: 0;
         }
 
-        /* Stat number animate */
+        /* Stat */
         .stat-num {
           font-size: 72px;
           font-weight: 900;
@@ -222,11 +203,7 @@ export default function FeaturesSection() {
           gap: 5px;
           opacity: 0.35;
         }
-        .dot-grid-sm div {
-          width: 4px; height: 4px;
-          border-radius: 50%;
-          background: #84b6f4;
-        }
+        .dot-grid-sm div { width: 4px; height: 4px; border-radius: 50%; background: #84b6f4; }
 
         /* Section label */
         .section-eyebrow {
@@ -235,6 +212,78 @@ export default function FeaturesSection() {
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: #4d82bc;
+        }
+
+        /* ── RESPONSIVE LAYOUT ── */
+
+        /* Main outer grid: 2 cols desktop */
+        .features-outer-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          align-items: start;
+        }
+
+        /* Inner 2×2 grid of feature cards */
+        .features-inner-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        /* Tablet: tighten padding on main card */
+        @media (max-width: 900px) {
+          .main-card {
+            padding: 36px 30px;
+            min-height: 360px;
+          }
+          .stat-num { font-size: 58px; }
+          .stat-sym { font-size: 42px; }
+        }
+
+        /* Mobile: everything stacks in a single column */
+        @media (max-width: 640px) {
+          .fs-root section {
+            padding: 60px 0 72px !important;
+          }
+          .fs-root section > div {
+            padding: 0 16px !important;
+          }
+
+          .features-outer-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          /* Feature mini-cards: keep 2 cols on mobile (they're small enough) */
+          .features-inner-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+          }
+
+          .main-card {
+            padding: 32px 28px;
+            min-height: auto;
+            border-radius: 22px;
+          }
+
+          .main-icon-box { margin-bottom: 20px; }
+
+          .stat-num { font-size: 64px; }
+          .stat-sym { font-size: 46px; }
+
+          .feat-card { padding: 20px 18px; gap: 10px; }
+          .feat-icon-box { width: 40px; height: 40px; font-size: 18px; }
+        }
+
+        /* Very small phones: feature cards go full width */
+        @media (max-width: 400px) {
+          .features-inner-grid {
+            grid-template-columns: 1fr;
+          }
+          .main-card { padding: 28px 20px; }
+          .stat-num { font-size: 56px; }
+          .stat-sym { font-size: 40px; }
         }
       `}</style>
 
@@ -245,6 +294,7 @@ export default function FeaturesSection() {
         style={{ background: "#fcffff", padding: "80px 0 96px" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
+
           {/* ── Header ── */}
           <div style={{ marginBottom: 52 }}>
             <p className="section-eyebrow afu1" style={{ marginBottom: 12 }}>
@@ -253,7 +303,7 @@ export default function FeaturesSection() {
             <h2
               className="afu2"
               style={{
-                fontSize: "clamp(30px,4vw,48px)",
+                fontSize: "clamp(26px,4vw,48px)",
                 fontWeight: 900,
                 color: "#005187",
                 lineHeight: 1.15,
@@ -281,29 +331,20 @@ export default function FeaturesSection() {
             </p>
           </div>
 
-          {/* ── Grid ── */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 20,
-              alignItems: "start",
-            }}
-          >
+          {/* ── Outer grid (2 cols → 1 col on mobile) ── */}
+          <div className="features-outer-grid">
+
             {/* ── LEFT: Main dark card ── */}
             <div className="main-card afu4">
-              {/* Icon */}
               <div style={{ position: "relative", zIndex: 1 }}>
                 <div className="main-icon-box">
                   <WhatsAppIcon size={24} />
-                  <span style={{ display: "none" }} />
                 </div>
-
                 <h3
                   style={{
                     color: "#fcffff",
                     fontWeight: 800,
-                    fontSize: 24,
+                    fontSize: "clamp(18px,2.5vw,24px)",
                     margin: "0 0 16px",
                     lineHeight: 1.3,
                   }}
@@ -328,104 +369,50 @@ export default function FeaturesSection() {
 
               {/* Bottom stat */}
               <div style={{ position: "relative", zIndex: 1, marginTop: 36 }}>
-                {/* dot grid accent */}
-                <div
-                  className="dot-grid-sm"
-                  style={{ position: "absolute", right: 0, bottom: 0 }}
-                >
-                  {Array.from({ length: 25 }).map((_, i) => (
-                    <div key={i} />
-                  ))}
+                <div className="dot-grid-sm" style={{ position: "absolute", right: 0, bottom: 0 }}>
+                  {Array.from({ length: 25 }).map((_, i) => <div key={i} />)}
                 </div>
 
-                <div
-                  style={{ display: "flex", alignItems: "flex-end", gap: 2 }}
-                >
+                <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
                   <span className="stat-num">{count}</span>
                   <span className="stat-sym">%</span>
                   <div style={{ marginBottom: 10, marginLeft: 4 }}>
-                    {/* small grid icon */}
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3,6px)",
-                        gap: 2,
-                      }}
-                    >
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,6px)", gap: 2 }}>
                       {Array.from({ length: 9 }).map((_, i) => (
-                        <div
-                          key={i}
-                          style={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: 2,
-                            background: "rgba(196,218,250,0.45)",
-                          }}
-                        />
+                        <div key={i} style={{ width: 6, height: 6, borderRadius: 2, background: "rgba(196,218,250,0.45)" }} />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p
-                  style={{
-                    color: "rgba(196,218,250,0.65)",
-                    fontSize: 13,
-                    fontWeight: 500,
-                    margin: "4px 0 0",
-                  }}
-                >
+                <p style={{ color: "rgba(196,218,250,0.65)", fontSize: 13, fontWeight: 500, margin: "4px 0 0" }}>
                   de tus clientes te busca desde el celular
                 </p>
               </div>
             </div>
 
             {/* ── RIGHT: 2×2 feature cards ── */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 16,
-              }}
-            >
+            <div className="features-inner-grid">
               {features.map((f, i) => (
                 <div
                   key={f.title}
                   className={`feat-card afi${Math.min(i + 1, 3)}`}
                   style={{ animationDelay: `${0.25 + i * 0.12}s` }}
                 >
-                  <div
-                    className="feat-icon-box"
-                    style={{ background: f.iconBg }}
-                  >
+                  <div className="feat-icon-box" style={{ background: f.iconBg }}>
                     <span style={{ fontSize: 22 }}>{f.icon}</span>
                   </div>
                   <div>
-                    <h4
-                      style={{
-                        color: "#005187",
-                        fontWeight: 800,
-                        fontSize: 15,
-                        margin: "0 0 8px",
-                        lineHeight: 1.3,
-                      }}
-                    >
+                    <h4 style={{ color: "#005187", fontWeight: 800, fontSize: 15, margin: "0 0 8px", lineHeight: 1.3 }}>
                       {f.title}
                     </h4>
-                    <p
-                      style={{
-                        color: "#4d82bc",
-                        fontSize: 13,
-                        lineHeight: 1.65,
-                        margin: 0,
-                        fontWeight: 400,
-                      }}
-                    >
+                    <p style={{ color: "#4d82bc", fontSize: 13, lineHeight: 1.65, margin: 0, fontWeight: 400 }}>
                       {f.desc}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>
