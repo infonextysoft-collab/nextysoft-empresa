@@ -278,6 +278,63 @@ export default function PricingSection() {
         /* Dot grid */
         .dot-g { display:grid; grid-template-columns:repeat(6,1fr); gap:7px; opacity:0.18; }
         .dot-g div { width:5px;height:5px;border-radius:50%;background:#4d82bc; }
+
+        .plans-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 24px;
+          align-items: start;
+        }
+
+        @media (max-width: 760px) {
+          .ps-root section {
+            padding: 64px 0 76px !important;
+          }
+
+          .ps-root section > div {
+            padding: 0 16px !important;
+          }
+
+          .plans-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .plan-light,
+          .plan-dark {
+            border-radius: 22px;
+            padding: 30px 22px;
+          }
+
+          .card-right {
+            order: -1;
+          }
+
+          .price-big {
+            font-size: 48px;
+            letter-spacing: -1px;
+          }
+
+          .feat-item {
+            font-size: 13px;
+          }
+
+          .guarantee-strip {
+            align-items: flex-start;
+            text-align: left;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .plan-light,
+          .plan-dark {
+            padding: 26px 18px;
+          }
+
+          .price-big {
+            font-size: 42px;
+          }
+        }
       `}</style>
 
       <div
@@ -301,7 +358,7 @@ export default function PricingSection() {
             </div>
 
             {/* ── Cards grid ── */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
+            <div className="plans-grid">
 
               {/* ── Plan Esencial (light) ── */}
               <div className="plan-light card-left">
