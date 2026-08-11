@@ -12,13 +12,23 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const proyectos = [
+type Plan = "esencial" | "pro";
+
+const proyectos: {
+  id: number;
+  nombre: string;
+  categoria: string;
+  link: string;
+  imagen: string;
+  plan: Plan;
+}[] = [
   {
     id: 1,
     nombre: "Carteras",
     categoria: "E-commerce",
     link: "https://demo-carteras.vercel.app/",
     imagen: "/demos/carteras.png",
+    plan: "esencial",
   },
   {
     id: 2,
@@ -26,6 +36,7 @@ const proyectos = [
     categoria: "E-commerce",
     link: "https://demo-zapatos.vercel.app/",
     imagen: "/demos/zapatos.png",
+    plan: "esencial",
   },
   {
     id: 3,
@@ -33,6 +44,7 @@ const proyectos = [
     categoria: "Entretenimiento",
     link: "https://demo-eventos-navy.vercel.app/",
     imagen: "/demos/eventos.png",
+    plan: "esencial",
   },
   {
     id: 4,
@@ -40,17 +52,33 @@ const proyectos = [
     categoria: "Moda",
     link: "https://demo-ropa.vercel.app/",
     imagen: "/demos/ropa.png",
+    plan: "esencial",
   },
+];
+
+const PLAN_LABEL: Record<Plan, string> = {
+  esencial: "Plan Esencial",
+  pro: "Plan Pro",
+};
+
+const filtros: { key: "todos" | Plan; label: string; disabled?: boolean }[] = [
+  { key: "todos", label: "Todos" },
+  { key: "esencial", label: "Esencial" },
+  { key: "pro", label: "Pro (próximamente)", disabled: true },
 ];
 
 export default function ProjectDemos() {
   const [activo, setActivo] = useState<number | null>(null);
   const [tocado, setTocado] = useState<number | null>(null);
+  const [filtro, setFiltro] = useState<"todos" | Plan>("todos");
 
   // En móvil usamos tap en lugar de hover
   const handleTap = (id: number) => {
     setTocado((prev) => (prev === id ? null : id));
   };
+
+  const proyectosFiltrados =
+    filtro === "todos" ? proyectos : proyectos.filter((p) => p.plan === filtro);
 
   return (
     <>
@@ -141,6 +169,62 @@ export default function ProjectDemos() {
             padding: 6px 12px;
           }
         }
+
+        @keyframes pdBadgePulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(0,81,135,0.35); }
+          50%       { box-shadow: 0 0 0 5px rgba(0,81,135,0); }
+        }
+
+        .pd-plan-badge {
+          position: absolute;
+          top: 28px;
+          left: 8px;
+          z-index: 4;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: rgba(0,81,135,0.92);
+          color: #fff;
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 0.03em;
+          padding: 4px 10px;
+          border-radius: 100px;
+          animation: pdBadgePulse 2.6s ease-in-out infinite;
+        }
+
+        .pd-filters {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-bottom: 32px;
+        }
+
+        .pd-filter-btn {
+          border: 1.5px solid #e5e7eb;
+          background: #fff;
+          color: #6b7280;
+          font-size: 13px;
+          font-weight: 700;
+          padding: 8px 18px;
+          border-radius: 100px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .pd-filter-btn:hover:not(:disabled) {
+          border-color: #1a56db;
+          color: #1a56db;
+        }
+        .pd-filter-btn.active {
+          background: #1a56db;
+          border-color: #1a56db;
+          color: #fff;
+        }
+        .pd-filter-btn:disabled {
+          cursor: not-allowed;
+          opacity: 0.55;
+        }
       `}</style>
 
       <section
@@ -194,9 +278,24 @@ export default function ProjectDemos() {
           </p>
         </div>
 
+        {/* Filtros por plan */}
+        <div className="pd-filters">
+          {filtros.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              disabled={f.disabled}
+              onClick={() => !f.disabled && setFiltro(f.key)}
+              className={`pd-filter-btn ${filtro === f.key ? "active" : ""}`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
         {/* Cards Grid */}
         <div className="pd-grid">
-          {proyectos.map((p) => {
+          {proyectosFiltrados.map((p) => {
             const isActive = activo === p.id || tocado === p.id;
             return (
               <div
@@ -247,6 +346,9 @@ export default function ProjectDemos() {
                       </span>
                     </div>
                   </div>
+
+                  {/* Badge de plan */}
+                  <span className="pd-plan-badge">{PLAN_LABEL[p.plan]}</span>
 
                   {/* Screenshot */}
                   <Image
@@ -309,9 +411,12 @@ export default function ProjectDemos() {
         <div style={{ textAlign: "center", marginTop: 52 }}>
           <p
             className="pd-cta-text"
-            style={{ color: "#6b7280", marginBottom: 16, fontSize: 15 }}
+            style={{ color: "#6b7280", marginBottom: 8, fontSize: 15 }}
           >
             ¿No ves tu rubro? Trabajamos con cualquier tipo de negocio.
+          </p>
+          <p style={{ color: "#9ca3af", marginBottom: 16, fontSize: 12.5 }}>
+            Estas demos muestran el nivel del plan Esencial. Pronto sumamos ejemplos del plan Pro.
           </p>
           <a
             href={waLink}

@@ -353,7 +353,7 @@ export default function PricingSection() {
                 Elige el plan ideal<br />para tu negocio
               </h2>
               <p className="afu3" style={{ fontSize: 15, color: "#84b6f4", lineHeight: 1.7, maxWidth: 420, margin: "0 auto", fontWeight: 500 }}>
-                Sin mensualidades ni sorpresas. Pagas una sola vez y tu página trabaja para ti todos los días.
+                Pago único al inicio. Tu catálogo trabaja para ti todos los días.
               </p>
             </div>
 
@@ -375,29 +375,29 @@ export default function PricingSection() {
                   Para empezar a vender
                 </h3>
                 <p style={{ fontSize: 13, color: "#84b6f4", fontWeight: 500, margin: "0 0 28px", lineHeight: 1.6 }}>
-                  Ideal si recién lanzas tu negocio o quieres tu primera página web.
+                  Ideal si recién lanzas tu negocio y quieres tu primer catálogo digital con WhatsApp.
                 </p>
 
                 {/* Price */}
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 8, marginBottom: 6 }}>
-                  <span className="price-big" style={{ color: "#005187" }}>$ 49</span>
-                  <span style={{ fontSize: 13, color: "#84b6f4", fontWeight: 600, marginBottom: 10 }}>pago único</span>
+                  <span className="price-big" style={{ color: "#005187" }}>S/199</span>
+                  <span style={{ fontSize: 13, color: "#84b6f4", fontWeight: 600, marginBottom: 10 }}>+ IGV · pago único</span>
                 </div>
-                <p style={{ fontSize: 12, color: "#c4dafa", fontWeight: 500, margin: "0 0 28px" }}>Sin mensualidades · Sin renovaciones</p>
+                <p style={{ fontSize: 12, color: "#c4dafa", fontWeight: 500, margin: "0 0 28px" }}>Sin mensualidades · Hosting gratis sin vencimiento</p>
 
                 <hr className="plan-divider-light" />
 
                 {/* Features */}
                 <div style={{ display: "flex", flexDirection: "column", marginBottom: 28 }}>
                   {[
-                    "Botón de WhatsApp en cada producto",
-                    "Diseño moderno adaptado a tu marca",
-                    "100% optimizada para celular",
-                    "Hasta 100 productos",
-                    "Secciones básicas: inicio, catálogo, contacto",
-                    "Redes Sociales",
-                    "Hosting y Dominio Gratis",
+                    "Botón de WhatsApp personalizado en cada producto",
+                    "Diseño con plantilla adaptada a tu marca (logo y colores)",
+                    "100% optimizado para celular",
+                    "Hasta 80 productos",
+                    "Secciones: inicio, catálogo, contacto",
+                    "Hosting gratis permanente (sin renovación, sin vencimiento)",
                     "1 revisión de diseño incluida",
+                    "Entrega en 5 días hábiles",
                   ].map((f) => (
                     <div key={f} className="feat-item">
                       <span className="feat-check-light"><CheckIcon /></span>
@@ -411,6 +411,12 @@ export default function PricingSection() {
                   <WhatsAppIcon size={18} />
                   Empezar con Esencial
                 </button>
+                <a
+                  href="/planes#esencial"
+                  style={{ display: "block", textAlign: "center", marginTop: 14, fontSize: 13, fontWeight: 700, color: "#4d82bc", textDecoration: "none" }}
+                >
+                  Ver todo lo que incluye →
+                </a>
               </div>
 
               {/* ── Plan Pro (dark) ── */}
@@ -431,29 +437,29 @@ export default function PricingSection() {
                   Para negocios que quieren destacar
                 </h3>
                 <p style={{ fontSize: 13, color: "rgba(196,218,250,0.70)", fontWeight: 500, margin: "0 0 28px", lineHeight: 1.6, position: "relative", zIndex: 1 }}>
-                  Más productos, más revisiones y soporte prioritario por 30 días.
+                  Para catálogos más grandes que buscan verse más profesionales, con dominio propio y más control de marca.
                 </p>
 
                 {/* Price */}
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 8, marginBottom: 6, position: "relative", zIndex: 1 }}>
-                  <span className="price-big" style={{ color: "#fcffff" }}>$ 99</span>
-                  <span style={{ fontSize: 13, color: "rgba(196,218,250,0.65)", fontWeight: 600, marginBottom: 10 }}>pago único</span>
+                  <span className="price-big" style={{ color: "#fcffff" }}>S/499</span>
+                  <span style={{ fontSize: 13, color: "rgba(196,218,250,0.65)", fontWeight: 600, marginBottom: 10 }}>+ IGV · pago único</span>
                 </div>
-                <p style={{ fontSize: 12, color: "rgba(196,218,250,0.40)", fontWeight: 500, margin: "0 0 28px", position: "relative", zIndex: 1 }}>Sin mensualidades · Sin renovaciones</p>
+                <p style={{ fontSize: 12, color: "rgba(196,218,250,0.40)", fontWeight: 500, margin: "0 0 28px", position: "relative", zIndex: 1 }}>Dominio y hosting incluidos el primer año · renovación S/199 + IGV/año desde el año 2</p>
 
                 <hr className="plan-divider-dark" style={{ position: "relative", zIndex: 1 }} />
 
                 {/* Features */}
                 <div style={{ display: "flex", flexDirection: "column", marginBottom: 28, position: "relative", zIndex: 1 }}>
                   {[
-                    "Hasta 250 0 300 productos",
-                    "Categorías de productos",
-                    "Botón de WhatsApp personalizado",
-                    "100% optimizada para celular",
-                    "Diseño más profesional",
-                    "2 o 3 revisiones de diseño incluidas",
-                    "Blog o sección de novedades",
-                    "Integración con redes sociales",
+                    "Hasta 250 productos",
+                    "Categorías de productos organizadas",
+                    "Botón de WhatsApp personalizado en cada producto",
+                    "Referencias de estilo a elegir + ajustes de estructura a tu gusto",
+                    "3 revisiones de diseño incluidas",
+                    "Sección de novedades / promociones",
+                    "Dominio .com propio + hosting incluidos el primer año",
+                    "Entrega en 7 días hábiles",
                   ].map((f) => (
                     <div key={f} className="feat-item">
                       <span className="feat-check-dark"><CheckIcon /></span>
@@ -466,17 +472,29 @@ export default function PricingSection() {
                   <WhatsAppIcon size={18} />
                   Empezar con Pro
                 </button>
+                <a
+                  href="/planes#pro"
+                  style={{ display: "block", textAlign: "center", marginTop: 14, fontSize: 13, fontWeight: 700, color: "rgba(196,218,250,0.85)", textDecoration: "none", position: "relative", zIndex: 1 }}
+                >
+                  Ver todo lo que incluye →
+                </a>
               </div>
 
             </div>
 
+            {/* ── Fine print ── */}
+            <p className="afu3" style={{ textAlign: "center", fontSize: 12.5, color: "#84b6f4", fontWeight: 500, margin: "24px 0 0", lineHeight: 1.6 }}>
+              El precio final varía según el número de productos de tu catálogo y el estado de tus fotos. Precios no incluyen IGV.{" "}
+              <a href="/planes#calculo" style={{ color: "#005187", fontWeight: 700, textDecoration: "none" }}>Ver cómo se calcula tu precio →</a>
+            </p>
+
             {/* ── Guarantee strip ── */}
-            <div style={{ marginTop: 36 }}>
+            <div style={{ marginTop: 20 }}>
               <div className="guarantee-strip afu3">
                 <span style={{ fontSize: 20 }}>🔒</span>
                 <span>
                   <strong style={{ color: "#005187" }}>Garantía de satisfacción:</strong>{" "}
-                  Si no quedas conforme con el diseño, te hacemos los cambios hasta que estés feliz.
+                  Si al terminar tus revisiones incluidas el catálogo no refleja lo que pediste en tu brief inicial, seguimos ajustando sin costo dentro de los 15 días posteriores a la entrega.
                 </span>
               </div>
             </div>
