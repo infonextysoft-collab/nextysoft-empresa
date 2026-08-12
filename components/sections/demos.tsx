@@ -36,7 +36,7 @@ const proyectos: {
     categoria: "E-commerce",
     link: "https://demo-zapatos.vercel.app/",
     imagen: "/demos/zapatos.png",
-    plan: "esencial",
+    plan: "pro",
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const proyectos: {
     categoria: "Moda",
     link: "https://demo-ropa.vercel.app/",
     imagen: "/demos/ropa.png",
-    plan: "esencial",
+    plan: "pro",
   },
 ];
 
@@ -61,10 +61,15 @@ const PLAN_LABEL: Record<Plan, string> = {
   pro: "Plan Pro",
 };
 
-const filtros: { key: "todos" | Plan; label: string; disabled?: boolean }[] = [
+const PLAN_BADGE_BG: Record<Plan, string> = {
+  esencial: "rgba(0,81,135,0.92)",
+  pro: "linear-gradient(120deg, #005187 0%, #4d82bc 100%)",
+};
+
+const filtros: { key: "todos" | Plan; label: string }[] = [
   { key: "todos", label: "Todos" },
   { key: "esencial", label: "Esencial" },
-  { key: "pro", label: "Pro (próximamente)", disabled: true },
+  { key: "pro", label: "Pro" },
 ];
 
 export default function ProjectDemos() {
@@ -212,7 +217,7 @@ export default function ProjectDemos() {
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .pd-filter-btn:hover:not(:disabled) {
+        .pd-filter-btn:hover {
           border-color: #1a56db;
           color: #1a56db;
         }
@@ -220,10 +225,6 @@ export default function ProjectDemos() {
           background: #1a56db;
           border-color: #1a56db;
           color: #fff;
-        }
-        .pd-filter-btn:disabled {
-          cursor: not-allowed;
-          opacity: 0.55;
         }
       `}</style>
 
@@ -284,8 +285,7 @@ export default function ProjectDemos() {
             <button
               key={f.key}
               type="button"
-              disabled={f.disabled}
-              onClick={() => !f.disabled && setFiltro(f.key)}
+              onClick={() => setFiltro(f.key)}
               className={`pd-filter-btn ${filtro === f.key ? "active" : ""}`}
             >
               {f.label}
@@ -348,7 +348,10 @@ export default function ProjectDemos() {
                   </div>
 
                   {/* Badge de plan */}
-                  <span className="pd-plan-badge">{PLAN_LABEL[p.plan]}</span>
+                  <span className="pd-plan-badge" style={{ background: PLAN_BADGE_BG[p.plan] }}>
+                    {p.plan === "pro" && <span style={{ fontSize: 10 }}>✦</span>}
+                    {PLAN_LABEL[p.plan]}
+                  </span>
 
                   {/* Screenshot */}
                   <Image
@@ -416,7 +419,7 @@ export default function ProjectDemos() {
             ¿No ves tu rubro? Trabajamos con cualquier tipo de negocio.
           </p>
           <p style={{ color: "#9ca3af", marginBottom: 16, fontSize: 12.5 }}>
-            Estas demos muestran el nivel del plan Esencial. Pronto sumamos ejemplos del plan Pro.
+            Filtra por plan para ver ejemplos del nivel Esencial y del nivel Pro.
           </p>
           <a
             href={waLink}
