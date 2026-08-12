@@ -76,15 +76,6 @@ const extras = [
   { label: "Organizar/editar fotos de productos que no vienen listas", aplica: "Ambos", costo: "+ S/80" },
 ];
 
-const pasos = [
-  { n: "01", t: "Nos envías tu info", d: "Logo, colores y lista de productos (fotos + precios) por WhatsApp o formulario." },
-  { n: "02", t: "Armamos el primer borrador", d: "En 5 o 7 días hábiles según el plan." },
-  { n: "03", t: "Revisas y nos das tu feedback", d: "Dentro de las revisiones incluidas en tu plan." },
-  { n: "04", t: "Ajustamos hasta que estés conforme", d: "Sobre lo definido en tu brief inicial." },
-  { n: "05", t: "Publicamos tu catálogo", d: "Con dominio .com activo si es plan Pro." },
-  { n: "06", t: "Capacitación rápida (15-20 min)", d: "Para que sepas cómo pedirnos cambios a futuro." },
-];
-
 const faqs = [
   {
     q: "¿Por qué el Pro cuesta más del doble que el Esencial?",
@@ -120,7 +111,6 @@ const subnav = [
   { href: "#comparativa", label: "Comparativa" },
   { href: "#calculo", label: "Tu precio" },
   { href: "#recurrentes", label: "Recurrentes" },
-  { href: "#proceso", label: "Proceso" },
   { href: "#faq", label: "FAQ" },
   { href: "#pago", label: "Pago" },
 ];
@@ -298,16 +288,6 @@ export default function PlanesDetalle() {
         .pd2-cost { font-weight: 800; color: #005187; }
 
         /* ── Process steps ── */
-        .pd2-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .pd2-step {
-          background: #f6faff; border: 1px solid rgba(196,218,250,0.7); border-radius: 16px; padding: 22px 20px;
-          transition: all 0.25s ease;
-        }
-        .pd2-step:hover { border-color: #84b6f4; background: #fff; transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,81,135,0.08); }
-        .pd2-step-num { font-size: 12px; font-weight: 900; letter-spacing: 0.1em; color: #84b6f4; display: block; margin-bottom: 14px; }
-        .pd2-step h4 { color: #005187; font-size: 14.5px; font-weight: 800; margin: 0 0 6px; line-height: 1.35; }
-        .pd2-step p { color: #4d82bc; font-size: 13px; margin: 0; line-height: 1.6; }
-
         /* ── Guarantee banner ── */
         .pd2-guarantee {
           display: flex; align-items: flex-start; gap: 14px;
@@ -369,7 +349,6 @@ export default function PlanesDetalle() {
           .pd2-wrap { padding: 0 18px; }
           .pd2-subnav { padding: 10px 18px; }
           .pd2-section { padding: 44px 0 4px; }
-          .pd2-steps-grid { grid-template-columns: 1fr 1fr; }
 
           /* Swap table for stacked plan cards */
           .pd2-table-card { display: none; }
@@ -385,10 +364,6 @@ export default function PlanesDetalle() {
           .pd2-plan-card.pro .pd2-plan-row-label { color: rgba(196,218,250,0.75); }
           .pd2-plan-row-value { color: #005187; font-weight: 700; text-align: right; }
           .pd2-plan-card.pro .pd2-plan-row-value { color: #fcffff; }
-        }
-
-        @media (max-width: 480px) {
-          .pd2-steps-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
@@ -539,26 +514,7 @@ export default function PlanesDetalle() {
         </Reveal>
       </section>
 
-      {/* ── 4. Proceso ── */}
-      <section id="proceso" className="pd2-section pd2-wrap">
-        <Reveal>
-          <h2 className="pd2-h2">Proceso de trabajo</h2>
-          <p className="pd2-h2-sub">Seis pasos, de tu WhatsApp a tu catálogo publicado.</p>
-        </Reveal>
-        <div className="pd2-steps-grid">
-          {pasos.map((p, i) => (
-            <Reveal key={p.n} className="pd2-step-reveal" >
-              <div className="pd2-step" style={{ transitionDelay: `${i * 60}ms` }}>
-                <span className="pd2-step-num">{p.n}</span>
-                <h4>{p.t}</h4>
-                <p>{p.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 5. Garantía ── */}
+      {/* ── 4. Garantía ── */}
       <section className="pd2-section pd2-wrap">
         <Reveal>
           <div className="pd2-guarantee">
@@ -571,7 +527,7 @@ export default function PlanesDetalle() {
         </Reveal>
       </section>
 
-      {/* ── 6. FAQ ── */}
+      {/* ── 5. FAQ ── */}
       <section id="faq" className="pd2-section pd2-wrap">
         <Reveal>
           <h2 className="pd2-h2">Preguntas frecuentes</h2>
@@ -586,7 +542,7 @@ export default function PlanesDetalle() {
         </Reveal>
       </section>
 
-      {/* ── 7. Forma de pago + CTA ── */}
+      {/* ── 6. Forma de pago + CTA ── */}
       <section id="pago" className="pd2-section pd2-wrap" style={{ paddingBottom: 64 }}>
         <Reveal>
           <h2 className="pd2-h2">Forma de pago</h2>
