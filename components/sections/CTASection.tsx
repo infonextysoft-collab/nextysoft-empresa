@@ -2,6 +2,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { waLink } from "@/constants/contact";
 
 export default function CTASection() {
   const [hovered, setHovered] = useState(false);
@@ -14,7 +16,7 @@ export default function CTASection() {
         alignItems: "center",
         justifyContent: "center",
         background: "#f0f4f8",
-        fontFamily: "'Segoe UI', sans-serif",
+        fontFamily: "var(--font-jakarta), sans-serif",
         padding: "2rem",
       }}
     >
@@ -100,7 +102,7 @@ export default function CTASection() {
           </p>
 
           <a
-            href="https://wa.me/"
+            href={waLink("Hola, quiero empezar mi página web 🚀")}
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => setHovered(true)}
@@ -144,7 +146,10 @@ export default function CTASection() {
               letterSpacing: "0.02em",
             }}
           >
-            Nexty Soft — Soluciones digitales para tu negocio
+            ¿Quieres saber cuánto te costaría?{" "}
+            <Link href="/calculadora" style={{ color: "#ffffff", fontWeight: 700 }}>
+              Calcula tu precio
+            </Link>
           </p>
         </div>
       </div>

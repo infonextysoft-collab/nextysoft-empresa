@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { waLink } from "@/constants/contact";
+import { BLOQUE_PRODUCTOS, EXTRAS, IGV, PLANES, PRECIO_BLOQUE } from "@/constants/pricing";
 
 // Brand palette
 // #005187 – deep navy
@@ -9,9 +11,6 @@ import Link from "next/link";
 // #84b6f4 – sky blue
 // #c4dafa – pale blue
 // #fcffff – near white
-
-const WA_NUMBER = "51999999999";
-const waLink = (msg: string) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
 const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} fill="currentColor" viewBox="0 0 24 24">
@@ -69,13 +68,6 @@ const comparativa: Cell[] = [
   { label: "Soporte post-entrega", esencial: "15 días", pro: "30 días" },
 ];
 
-const extras = [
-  { label: "+25 productos sobre el límite del plan", aplica: "Ambos", costo: "+ S/50" },
-  { label: "Revisión de diseño adicional", aplica: "Ambos", costo: "+ S/30 c/u" },
-  { label: "Dominio .com propio en el plan Esencial (opcional)", aplica: "Esencial", costo: "+ S/70/año" },
-  { label: "Organizar/editar fotos de productos que no vienen listas", aplica: "Ambos", costo: "+ S/80" },
-];
-
 const faqs = [
   {
     q: "¿Por qué el Pro cuesta más del doble que el Esencial?",
@@ -87,7 +79,7 @@ const faqs = [
   },
   {
     q: "¿Qué pasa si tengo más de 80 (Esencial) o 250 (Pro) productos?",
-    a: "Se suma por bloques de 25 productos (+S/50 c/u), sin cambiar de plan. Catálogos mucho más grandes pueden requerir un día adicional de entrega por cada 100 productos extra.",
+    a: `Se suma por bloques de ${BLOQUE_PRODUCTOS} productos (+S/${PRECIO_BLOQUE} c/u), sin cambiar de plan. Catálogos mucho más grandes pueden requerir un día adicional de entrega por cada 100 productos extra. En la calculadora ves el total exacto.`,
   },
   {
     q: "¿El hosting gratis del plan Esencial se puede caer o dejar de funcionar?",
@@ -145,10 +137,9 @@ export default function PlanesDetalle() {
   return (
     <main className="pd2-root" style={{ background: "linear-gradient(180deg, #fcffff 0%, #edf5ff 100%)", minHeight: "100vh" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
         .pd2-root * { box-sizing: border-box; }
-        .pd2-root { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .pd2-root { font-family: var(--font-jakarta), sans-serif; }
         .pd2-wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
 
         @keyframes pd2FadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -194,7 +185,7 @@ export default function PlanesDetalle() {
         /* ── Sticky sub-nav ── */
         .pd2-subnav-wrap {
           position: sticky;
-          top: 0;
+          top: var(--nav-h);
           z-index: 30;
           background: rgba(252,255,255,0.85);
           backdrop-filter: blur(10px);
@@ -306,7 +297,7 @@ export default function PlanesDetalle() {
           width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
           background: none; border: none; text-align: left; cursor: pointer;
           padding: 18px 4px; font-size: 14.5px; font-weight: 700; color: #005187;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: var(--font-jakarta), sans-serif;
           transition: color 0.2s ease;
         }
         .pd2-faq-q:hover { color: #4d82bc; }
@@ -344,7 +335,30 @@ export default function PlanesDetalle() {
 
         .pd2-footnote { font-size: 13px; color: #274b6d; line-height: 1.75; margin: 0; }
 
+        /* ── Resumen de cálculo + enlace a la calculadora ── */
+        .pd2-calc { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+        .pd2-rules { list-style: none; margin: 0; padding: 0; }
+        .pd2-rules li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(196,218,250,0.45); font-size: 13.5px; color: #274b6d; }
+        .pd2-rules li:first-child { padding-top: 0; }
+        .pd2-rules li:last-child { border-bottom: none; padding-bottom: 0; }
+        .pd2-rules .pd2-cost { white-space: nowrap; text-align: right; }
+        .pd2-calc-cta {
+          position: relative; overflow: hidden;
+          background: linear-gradient(150deg, #005187 0%, #003d6e 100%);
+          border-radius: 18px; padding: 26px 24px;
+          display: flex; flex-direction: column; justify-content: center;
+        }
+        .pd2-calc-btn {
+          align-self: flex-start;
+          display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+          background: #fcffff; color: #005187; font-weight: 800; font-size: 14px;
+          padding: 12px 22px; border-radius: 100px; text-decoration: none;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pd2-calc-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+
         @media (max-width: 760px) {
+          .pd2-calc { grid-template-columns: 1fr; }
           .pd2-hero { padding: 40px 0 28px; }
           .pd2-wrap { padding: 0 18px; }
           .pd2-subnav { padding: 10px 18px; }
@@ -456,25 +470,42 @@ export default function PlanesDetalle() {
           <p className="pd2-h2-sub">El precio base cubre lo esencial; esto es lo que se suma según tu caso.</p>
         </Reveal>
         <Reveal>
-          <div className="pd2-table-card" style={{ marginBottom: 16 }}>
-            <table className="pd2-mini-table">
-              <thead>
-                <tr>
-                  <th>Si necesitas...</th>
-                  <th>Aplica a</th>
-                  <th>Costo adicional</th>
-                </tr>
-              </thead>
-              <tbody>
-                {extras.map((row) => (
-                  <tr key={row.label}>
-                    <td>{row.label}</td>
-                    <td>{row.aplica}</td>
-                    <td className="pd2-cost">{row.costo}</td>
-                  </tr>
+          <div className="pd2-calc" style={{ marginBottom: 16 }}>
+            <div className="pd2-card">
+              <ul className="pd2-rules">
+                <li>
+                  <span>Cada bloque de {BLOQUE_PRODUCTOS} productos sobre el límite del plan</span>
+                  <span className="pd2-cost">+ S/{PRECIO_BLOQUE}</span>
+                </li>
+                {EXTRAS.map((e) => (
+                  <li key={e.id}>
+                    <span>
+                      {e.nombre}
+                      {e.planes.length === 1 ? ` (solo ${PLANES[e.planes[0]].nombre})` : ""}
+                    </span>
+                    <span className="pd2-cost">
+                      + S/{e.precio}
+                      {e.periodo ? `/${e.periodo}` : ""}
+                    </span>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+                <li>
+                  <span>IGV sobre el subtotal</span>
+                  <span className="pd2-cost">{IGV * 100}%</span>
+                </li>
+              </ul>
+            </div>
+            <div className="pd2-calc-cta">
+              <h3 style={{ position: "relative", color: "#fcffff", fontSize: 19, fontWeight: 900, margin: "0 0 8px" }}>
+                Calcula tu total exacto
+              </h3>
+              <p style={{ position: "relative", color: "rgba(196,218,250,0.85)", fontSize: 13.5, lineHeight: 1.7, margin: 0 }}>
+                Elige plan, cantidad de productos y extras: ves el total con IGV al instante y puedes descargar tu cotización en PDF.
+              </p>
+              <Link href="/calculadora" className="pd2-calc-btn">
+                Abrir la calculadora →
+              </Link>
+            </div>
           </div>
           <div className="pd2-card">
             <p className="pd2-footnote">

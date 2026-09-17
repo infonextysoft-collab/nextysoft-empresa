@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { waLink } from "@/constants/contact";
   
 // Brand palette
 // #005187 – deep navy
@@ -44,10 +46,9 @@ export default function PricingSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
         .ps-root * { box-sizing: border-box; }
-        .ps-root { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .ps-root { font-family: var(--font-jakarta), sans-serif; }
 
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }
@@ -198,11 +199,12 @@ export default function PricingSection() {
         /* CTA buttons */
         .btn-light {
           width: 100%;
+          text-decoration: none;
           background: #005187;
           color: #fcffff;
           font-weight: 800;
           font-size: 15px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: var(--font-jakarta), sans-serif;
           border: none;
           padding: 16px 0;
           border-radius: 16px;
@@ -221,11 +223,12 @@ export default function PricingSection() {
         }
         .btn-dark {
           width: 100%;
+          text-decoration: none;
           background: #fcffff;
           color: #005187;
           font-weight: 800;
           font-size: 15px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: var(--font-jakarta), sans-serif;
           border: none;
           padding: 16px 0;
           border-radius: 16px;
@@ -407,16 +410,21 @@ export default function PricingSection() {
 
                 </div>
 
-                <button className="btn-light">
+                <a
+                  href={waLink("Hola, quiero empezar con el plan Esencial 🚀")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-light"
+                >
                   <WhatsAppIcon size={18} />
                   Empezar con Esencial
-                </button>
-                <a
-                  href="/planes#esencial"
+                </a>
+                <Link
+                  href="/planes#comparativa"
                   style={{ display: "block", textAlign: "center", marginTop: 14, fontSize: 13, fontWeight: 700, color: "#4d82bc", textDecoration: "none" }}
                 >
                   Ver todo lo que incluye →
-                </a>
+                </Link>
               </div>
 
               {/* ── Plan Pro (dark) ── */}
@@ -468,16 +476,22 @@ export default function PricingSection() {
                   ))}
                 </div>
 
-                <button className="btn-dark" style={{ position: "relative", zIndex: 1 }}>
+                <a
+                  href={waLink("Hola, quiero empezar con el plan Pro 🚀")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-dark"
+                  style={{ position: "relative", zIndex: 1 }}
+                >
                   <WhatsAppIcon size={18} />
                   Empezar con Pro
-                </button>
-                <a
-                  href="/planes#pro"
+                </a>
+                <Link
+                  href="/planes#comparativa"
                   style={{ display: "block", textAlign: "center", marginTop: 14, fontSize: 13, fontWeight: 700, color: "rgba(196,218,250,0.85)", textDecoration: "none", position: "relative", zIndex: 1 }}
                 >
                   Ver todo lo que incluye →
-                </a>
+                </Link>
               </div>
 
             </div>
@@ -485,7 +499,7 @@ export default function PricingSection() {
             {/* ── Fine print ── */}
             <p className="afu3" style={{ textAlign: "center", fontSize: 12.5, color: "#84b6f4", fontWeight: 500, margin: "24px 0 0", lineHeight: 1.6 }}>
               El precio final varía según el número de productos de tu catálogo y el estado de tus fotos. Precios no incluyen IGV.{" "}
-              <a href="/planes#calculo" style={{ color: "#005187", fontWeight: 700, textDecoration: "none" }}>Ver cómo se calcula tu precio →</a>
+              <Link href="/calculadora" style={{ color: "#005187", fontWeight: 700, textDecoration: "none" }}>Calcula tu precio exacto →</Link>
             </p>
 
             {/* ── Guarantee strip ── */}

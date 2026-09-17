@@ -2,13 +2,10 @@
 
 import React from "react";
 
-const WA_NUMBER = "5199999999"; 
-const WA_MESSAGE_HERO = "Hola, quiero mi página web 🌐";
-const WA_MESSAGE_FAB  = "Hola, quisiera más información 👋";
-const WA_MESSAGE_SHOP = "Hola, quiero hacer un pedido 🛍️";
+import { waLink } from "@/constants/contact";
 
-const waLink = (msg: string) =>
-  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+const WA_MESSAGE_HERO = "Hola, quiero mi página web 🌐";
+const WA_MESSAGE_SHOP = "Hola, quiero hacer un pedido 🛍️";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -32,7 +29,6 @@ export default function HeroSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
         :root {
           --c-navy:  #005187;
@@ -43,7 +39,7 @@ export default function HeroSection() {
         }
 
         .hero-root * { box-sizing: border-box; }
-        .hero-root { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-root { font-family: var(--font-jakarta), sans-serif; }
 
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(22px); }
@@ -72,11 +68,6 @@ export default function HeroSection() {
         @keyframes shimmer {
           0%   { background-position: -200% center; }
           100% { background-position: 200% center; }
-        }
-        @keyframes waBounce {
-          0%, 100% { transform: translateY(0) scale(1); }
-          30%       { transform: translateY(-5px) scale(1.04); }
-          60%       { transform: translateY(-2px) scale(1.01); }
         }
         @keyframes orb1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -119,7 +110,7 @@ export default function HeroSection() {
           transition: all 0.25s ease;
           box-shadow: 0 8px 24px rgba(0,81,135,0.32);
           text-decoration: none;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: var(--font-jakarta), sans-serif;
           flex: 1;
           justify-content: center;
           min-width: 0;
@@ -144,7 +135,7 @@ export default function HeroSection() {
           font-size: 14px;
           transition: all 0.25s ease;
           text-decoration: none;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: var(--font-jakarta), sans-serif;
           flex: 1;
           justify-content: center;
           min-width: 0;
@@ -155,27 +146,6 @@ export default function HeroSection() {
           transform: translateY(-2px);
           box-shadow: 0 6px 20px rgba(77,130,188,0.16);
         }
-
-        /* WhatsApp FAB */
-        .wa-fab {
-          animation: waBounce 3.2s ease-in-out infinite;
-          background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-          box-shadow: 0 8px 24px rgba(37,211,102,0.40);
-          color: white;
-          font-weight: 800;
-          border: none;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 14px 22px;
-          border-radius: 100px;
-          font-size: 14px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          transition: box-shadow 0.2s;
-          text-decoration: none;
-        }
-        .wa-fab:hover { box-shadow: 0 12px 32px rgba(37,211,102,0.55); }
 
         /* Gradient text */
         .grad-text {
@@ -275,9 +245,6 @@ export default function HeroSection() {
         .fc-right { right: -20px; top: 42%; }
         .fc-bot   { left: 8%; bottom: 9%; }
 
-        /* FAB label */
-        .wa-fab-label { display: inline; }
-
         @media (max-width: 1024px) {
           .hero-inner {
             flex-direction: column;
@@ -314,14 +281,6 @@ export default function HeroSection() {
             grid-template-columns: 1fr 1fr;
             gap: 10px;
           }
-
-          /* FAB más pequeño: solo icono */
-          .wa-fab {
-            padding: 14px;
-            border-radius: 50%;
-            gap: 0;
-          }
-          .wa-fab-label { display: none; }
 
           /* Dot grid oculto en móvil (espacio) */
           .dot-grid { display: none; }
@@ -420,7 +379,7 @@ export default function HeroSection() {
 
             {/* Trust pills */}
             <div className="afu5 trust-row">
-              {["Entrega en 2–5 días", "100% adaptable al celular", "Sin mensualidades"].map((item) => (
+              {["Entrega en 5 a 7 días", "100% adaptable al celular", "Sin mensualidades"].map((item) => (
                 <div key={item} className="trust-pill">
                   <span className="trust-check"><CheckIcon /></span>
                   {item}
@@ -447,7 +406,7 @@ export default function HeroSection() {
               style={{ padding: "14px 18px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(196,218,250,0.5)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>⚡</div>
               <div>
-                <p style={{ margin: 0, fontWeight: 900, fontSize: 17, color: "#005187", lineHeight: 1 }}>2–5 días</p>
+                <p style={{ margin: 0, fontWeight: 900, fontSize: 17, color: "#005187", lineHeight: 1 }}>5–7 días</p>
                 <p style={{ margin: "3px 0 0", fontSize: 11, color: "#84b6f4", fontWeight: 500 }}>Entrega rápida</p>
               </div>
             </div>
@@ -560,7 +519,7 @@ export default function HeroSection() {
                       padding: "11px 0", borderRadius: 14, border: "none",
                       alignItems: "center", justifyContent: "center", gap: 6, cursor: "pointer",
                       boxShadow: "0 4px 14px rgba(37,211,102,0.35)",
-                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontFamily: "var(--font-jakarta), sans-serif",
                       textDecoration: "none",
                     }}
                   >
@@ -574,18 +533,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* WhatsApp FAB */}
-        <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 50 }}>
-          <a
-            href={waLink(WA_MESSAGE_FAB)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="wa-fab"
-          >
-            <WhatsAppIcon className="w-5 h-5" />
-            <span className="wa-fab-label">Escríbenos</span>
-          </a>
-        </div>
       </section>
     </>
   );

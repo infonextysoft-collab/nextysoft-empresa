@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { PROYECTOS } from "@/constants/proyectos";
+import { waLink } from "@/constants/contact";
+import type { PlanId } from "@/constants/pricing";
 
-const WA_NUMBER = "51999999999";
-const WA_MESSAGE = "Hola, quiero mi demo gratis 🚀";
-const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
+const demoLink = waLink("Hola, quiero mi demo gratis 🚀");
 
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -12,78 +14,34 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-type Plan = "esencial" | "pro";
-
-const proyectos: {
-  id: number;
-  nombre: string;
-  categoria: string;
-  link: string;
-  imagen: string;
-  plan: Plan;
-}[] = [
-  {
-    id: 1,
-    nombre: "Carteras",
-    categoria: "E-commerce",
-    link: "https://demo-carteras.vercel.app/",
-    imagen: "/demos/carteras.png",
-    plan: "esencial",
-  },
-  {
-    id: 2,
-    nombre: "Zapatos",
-    categoria: "E-commerce",
-    link: "https://demo-zapatos.vercel.app/",
-    imagen: "/demos/zapatos.png",
-    plan: "pro",
-  },
-  {
-    id: 3,
-    nombre: "Eventos",
-    categoria: "Entretenimiento",
-    link: "https://demo-eventos-navy.vercel.app/",
-    imagen: "/demos/eventos.png",
-    plan: "esencial",
-  },
-  {
-    id: 4,
-    nombre: "Ropa",
-    categoria: "Moda",
-    link: "https://demo-ropa.vercel.app/",
-    imagen: "/demos/ropa.png",
-    plan: "pro",
-  },
-];
-
-const PLAN_LABEL: Record<Plan, string> = {
+const PLAN_LABEL: Record<PlanId, string> = {
   esencial: "Plan Esencial",
   pro: "Plan Pro",
 };
 
-const PLAN_BADGE_BG: Record<Plan, string> = {
+const PLAN_BADGE_BG: Record<PlanId, string> = {
   esencial: "rgba(0,81,135,0.92)",
   pro: "linear-gradient(120deg, #005187 0%, #4d82bc 100%)",
 };
 
-const filtros: { key: "todos" | Plan; label: string }[] = [
+const filtros: { key: "todos" | PlanId; label: string }[] = [
   { key: "todos", label: "Todos" },
   { key: "esencial", label: "Esencial" },
   { key: "pro", label: "Pro" },
 ];
 
 export default function ProjectDemos() {
-  const [activo, setActivo] = useState<number | null>(null);
-  const [tocado, setTocado] = useState<number | null>(null);
-  const [filtro, setFiltro] = useState<"todos" | Plan>("todos");
+  const [activo, setActivo] = useState<string | null>(null);
+  const [tocado, setTocado] = useState<string | null>(null);
+  const [filtro, setFiltro] = useState<"todos" | PlanId>("todos");
 
   // En móvil usamos tap en lugar de hover
-  const handleTap = (id: number) => {
+  const handleTap = (id: string) => {
     setTocado((prev) => (prev === id ? null : id));
   };
 
   const proyectosFiltrados =
-    filtro === "todos" ? proyectos : proyectos.filter((p) => p.plan === filtro);
+    filtro === "todos" ? PROYECTOS : PROYECTOS.filter((p) => p.plan === filtro);
 
   return (
     <>
@@ -253,7 +211,7 @@ export default function ProjectDemos() {
               marginBottom: 16,
             }}
           >
-            Proyectos reales
+            Demos por rubro
           </span>
           <h2
             className="pd-header-title"
@@ -296,14 +254,14 @@ export default function ProjectDemos() {
         {/* Cards Grid */}
         <div className="pd-grid">
           {proyectosFiltrados.map((p) => {
-            const isActive = activo === p.id || tocado === p.id;
+            const isActive = activo === p.slug || tocado === p.slug;
             return (
               <div
-                key={p.id}
+                key={p.slug}
                 className={`pd-card ${isActive ? "active" : ""}`}
-                onMouseEnter={() => setActivo(p.id)}
+                onMouseEnter={() => setActivo(p.slug)}
                 onMouseLeave={() => setActivo(null)}
-                onTouchStart={() => handleTap(p.id)}
+                onTouchStart={() => handleTap(p.slug)}
               >
                 {/* Preview */}
                 <div
@@ -418,11 +376,13 @@ export default function ProjectDemos() {
           >
             ¿No ves tu rubro? Trabajamos con cualquier tipo de negocio.
           </p>
-          <p style={{ color: "#9ca3af", marginBottom: 16, fontSize: 12.5 }}>
-            Filtra por plan para ver ejemplos del nivel Esencial y del nivel Pro.
+          <p style={{ marginBottom: 20, fontSize: 14 }}>
+            <Link href="/proyectos" style={{ color: "#1a56db", fontWeight: 700, textDecoration: "none" }}>
+              Ver cada demo en detalle →
+            </Link>
           </p>
           <a
-            href={waLink}
+            href={demoLink}
             target="_blank"
             rel="noreferrer"
             className="pd-cta-btn"

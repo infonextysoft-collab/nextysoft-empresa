@@ -19,7 +19,7 @@ const features = [
   {
     icon: "⚡",
     iconBg: "#fff3e0",
-    title: "Lista en 2 a 5 días",
+    title: "Lista en 5 a 7 días hábiles",
     desc: "Envíanos tus fotos y datos, es todo lo que necesitas hacer. Nosotros nos encargamos del resto.",
   },
   {
@@ -81,10 +81,9 @@ export default function FeaturesSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
         .fs-root * { box-sizing: border-box; }
-        .fs-root { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .fs-root { font-family: var(--font-jakarta), sans-serif; }
 
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }

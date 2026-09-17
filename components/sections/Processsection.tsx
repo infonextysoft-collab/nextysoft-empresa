@@ -1,29 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-
-const steps = [
-  {
-    number: "01",
-    title: "Cuéntanos sobre tu negocio",
-    desc: "Reunimos tus productos, colores, logo, redes y el número de WhatsApp donde quieres recibir pedidos.",
-  },
-  {
-    number: "02",
-    title: "Diseñamos tu página",
-    desc: "Creamos una web clara, moderna y adaptable al celular, enfocada en mostrar lo que vendes sin complicar al cliente.",
-  },
-  {
-    number: "03",
-    title: "Revisas y ajustamos",
-    desc: "Te enviamos una vista previa para validar textos, imágenes y secciones antes de dejarla lista para publicar.",
-  },
-  {
-    number: "04",
-    title: "Publicamos y conectamos WhatsApp",
-    desc: "Dejamos tu página online con botones de contacto y pedidos directos para que puedas empezar a vender.",
-  },
-];
+import { PASOS } from "@/constants/proceso";
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLElement>(null);
@@ -59,7 +38,7 @@ export default function Processsection() {
         .process-root {
           background: #fcffff;
           padding: 84px 0 96px;
-          font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+          font-family: var(--font-jakarta), Arial, sans-serif;
         }
 
         .process-wrap {
@@ -102,7 +81,7 @@ export default function Processsection() {
 
         .process-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 16px;
         }
 
@@ -110,7 +89,7 @@ export default function Processsection() {
           background: #f6faff;
           border: 1px solid rgba(196, 218, 250, 0.8);
           border-radius: 18px;
-          min-height: 260px;
+          min-height: 220px;
           padding: 26px 22px;
           opacity: 0;
           transform: translateY(18px);
@@ -131,13 +110,28 @@ export default function Processsection() {
           box-shadow: 0 12px 34px rgba(0, 81, 135, 0.1);
         }
 
+        .process-card-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          margin-bottom: 32px;
+        }
+
         .process-number {
           color: #84b6f4;
-          display: block;
           font-size: 13px;
           font-weight: 900;
           letter-spacing: 0.12em;
-          margin-bottom: 42px;
+        }
+
+        .process-tag {
+          font-size: 11px;
+          font-weight: 700;
+          color: #4d82bc;
+          border: 1px dashed #4d82bc;
+          border-radius: 100px;
+          padding: 3px 10px;
         }
 
         .process-card h3 {
@@ -153,6 +147,32 @@ export default function Processsection() {
           font-size: 13px;
           line-height: 1.65;
           margin: 0;
+        }
+
+        .process-footer {
+          margin-top: 32px;
+          text-align: center;
+        }
+
+        .process-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #005187;
+          font-size: 15px;
+          font-weight: 800;
+          text-decoration: none;
+          padding: 13px 26px;
+          border-radius: 100px;
+          border: 1.5px solid #c4dafa;
+          background: #fff;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .process-link:hover {
+          border-color: #4d82bc;
+          box-shadow: 0 6px 20px rgba(77, 130, 188, 0.16);
+          transform: translateY(-2px);
         }
 
         @media (max-width: 880px) {
@@ -183,8 +203,8 @@ export default function Processsection() {
             min-height: auto;
           }
 
-          .process-number {
-            margin-bottom: 24px;
+          .process-card-top {
+            margin-bottom: 20px;
           }
         }
       `}</style>
@@ -201,24 +221,33 @@ export default function Processsection() {
               <h2 className="process-title">De idea a página online en pocos días</h2>
             </div>
             <p className="process-intro">
-              Trabajamos con un flujo simple para que no tengas que aprender herramientas nuevas:
-              tú nos das la información de tu negocio y nosotros convertimos eso en una web lista
-              para recibir clientes.
+              Un flujo simple en 6 pasos para que no tengas que aprender herramientas nuevas: tú
+              nos das la información de tu negocio y nosotros la convertimos en un catálogo listo
+              para recibir clientes. La llamada por Meet es opcional.
             </p>
           </div>
 
           <div className="process-grid">
-            {steps.map((step, index) => (
+            {PASOS.map((paso, index) => (
               <article
-                key={step.number}
+                key={paso.numero}
                 className="process-card"
                 style={{ transitionDelay: visible ? `${index * 90}ms` : "0ms" }}
               >
-                <span className="process-number">{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
+                <div className="process-card-top">
+                  <span className="process-number">{paso.numero}</span>
+                  {paso.opcional && <span className="process-tag">Opcional</span>}
+                </div>
+                <h3>{paso.titulo}</h3>
+                <p>{paso.resumen}</p>
               </article>
             ))}
+          </div>
+
+          <div className="process-footer">
+            <Link href="/proceso" className="process-link">
+              Ver el proceso completo y qué material necesitas →
+            </Link>
           </div>
         </div>
       </section>
